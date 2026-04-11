@@ -7,6 +7,9 @@ int main() {
     printf("********************************\n");
 
     int secret_number = 42;
+    int guess;
 
-    printf("The number %d is the secret number. Don't tell anyone!", secret_number);
+    printf("What is your guess? ");
+    scanf("%d", &guess);
+    printf("Your guess was %d\n", guess);
 }
