@@ -12,4 +12,12 @@ int main() {
     printf("What is your guess? ");
     scanf("%d", &guess);
     printf("Your guess was %d\n", guess);
+
+    if (guess == secret_number) {
+        printf("Congratulations! You're correct!\n");
+        printf("Play again, you're a good player!\n");
+    } else {
+        printf("You're wrong!\n");
+        printf("Don't be sad, try again!\n");
+    }
 }
