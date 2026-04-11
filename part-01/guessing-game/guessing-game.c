@@ -17,7 +17,13 @@ int main() {
         printf("Congratulations! You're correct!\n");
         printf("Play again, you're a good player!\n");
     } else {
-        printf("You're wrong!\n");
-        printf("Don't be sad, try again!\n");
+
+        if (guess > secret_number) {
+            printf("Your guess was greater than the secret number\n");
+        }
+
+        if (guess < secret_number) {
+            printf("Your guess was less than the secret number\n");
+        }
     }
 }
