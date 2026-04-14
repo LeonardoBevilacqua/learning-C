@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#define RETRY_NUMBER 5
-
 int main() {
     // print the header of our game
     printf("********************************\n");
@@ -10,17 +8,18 @@ int main() {
 
     int secret_number = 42;
     int guess;
+    int attempt = 1;
 
-    for (int i = 1; i <= RETRY_NUMBER; i++) {
+    while (1) {
+
+        printf("Attempt %d\n", attempt);
         printf("What is your guess? ");
-        printf("Attempt %d of %d\n", i, RETRY_NUMBER);
+
         scanf("%d", &guess);
         printf("Your guess was %d\n", guess);
 
         if (guess < 0) {
             printf("You cannot guess negative numbers!\n");
-            i--;
-
             continue;
         }
 
@@ -37,6 +36,9 @@ int main() {
         } else {
             printf("Your guess was less than the secret number\n"); 
         }
+
+        attempt++;
     }
     printf("Game over!\n");
+    printf("You guessed correcty in %d attempts!\n", attempt);
 }
