@@ -17,6 +17,13 @@ int main() {
         scanf("%d", &guess);
         printf("Your guess was %d\n", guess);
 
+        if (guess < 0) {
+            printf("You cannot guess negative numbers!\n");
+            i--;
+
+            continue;
+        }
+
         int is_correct = guess == secret_number;
         int is_greater = guess > secret_number;
 
