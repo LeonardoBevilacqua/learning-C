@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define RETRY_NUMBER 5
+
 int main() {
     // print the header of our game
     printf("********************************\n");
@@ -9,9 +11,9 @@ int main() {
     int secret_number = 42;
     int guess;
 
-    for (int i = 1; i <= 3; i++) {
+    for (int i = 1; i <= RETRY_NUMBER; i++) {
         printf("What is your guess? ");
-        printf("Attempt %d of 3\n", i);
+        printf("Attempt %d of %d\n", i, RETRY_NUMBER);
         scanf("%d", &guess);
         printf("Your guess was %d\n", guess);
 
