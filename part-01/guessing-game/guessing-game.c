@@ -20,6 +20,8 @@ int main() {
         if (is_correct) {
             printf("Congratulations! You're correct!\n");
             printf("Play again, you're a good player!\n");
+
+            break;
         } else {
 
             int is_gretter = guess > secret_number;
