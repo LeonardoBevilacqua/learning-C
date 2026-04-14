@@ -18,21 +18,17 @@ int main() {
         printf("Your guess was %d\n", guess);
 
         int is_correct = guess == secret_number;
+        int is_greater = guess > secret_number;
 
         if (is_correct) {
             printf("Congratulations! You're correct!\n");
             printf("Play again, you're a good player!\n");
 
             break;
+        } else if (is_greater) {
+            printf("Your guess was greater than the secret number\n");
         } else {
-
-            int is_gretter = guess > secret_number;
-
-            if (is_gretter) {
-                printf("Your guess was greater than the secret number\n");
-            } else {
-                printf("Your guess was less than the secret number\n");
-            }
+            printf("Your guess was less than the secret number\n"); 
         }
     }
     printf("Game over!\n");
