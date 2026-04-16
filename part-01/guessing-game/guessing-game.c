@@ -9,7 +9,7 @@ int main() {
     int secret_number = 42;
     int guess;
     int attempt = 1;
-    int points = 1000;
+    double points = 1000;
 
     while (1) {
 
@@ -40,10 +40,10 @@ int main() {
 
         attempt++;
 
-        int lost_points = (guess - secret_number) / 2;
+        double lost_points = (guess - secret_number) / 2.0;
         points = points - lost_points;
     }
     printf("Game over!\n");
     printf("You guessed correcty in %d attempts!\n", attempt);
-    printf("Total points: %d", points);
+    printf("Total points: %f", points);
 }
