@@ -45,5 +45,5 @@ int main() {
     }
     printf("Game over!\n");
     printf("You guessed correcty in %d attempts!\n", attempt);
-    printf("Total points: %f", points);
+    printf("Total points: %.1f", points);
 }
