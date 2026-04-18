@@ -7,17 +7,37 @@ int main() {
     sprintf(secrect_word, "MELANCIA");
 
     int is_correct = 0;
-    int was_hanged = 1;
+    int was_hanged = 0;
+
+    char guesses[26];
+    int attempt = 0;
 
     do {
-        char guess;
-        scanf("%c", &guess);
 
         for (int i = 0; i < strlen(secrect_word); i++) {
-            if (secrect_word[i] == guess) {
-                printf("The position %d has this character!\n", i);
+
+            int found = 0;
+            for (int j = 0; j < attempt; j++) {
+                if (guesses[j] == secrect_word[i]) {
+                    found = 1;
+                    break;
+                }
             }
+
+            if (found) {
+                printf("%c ", secrect_word[i]);
+            } else {
+                printf("_ ");
+            }
+
         }
+        printf("\n");
+
+        char guess;
+        scanf(" %c", &guess);
+
+        guesses[attempt] = guess;
+        attempt++;
 
     } while (!is_correct && !was_hanged);
 }
