@@ -18,7 +18,23 @@ int main() {
     int attempt = 1;
     double points = 1000;
 
-    while (1) {
+    int is_correct = 0;
+    int difficult_level = 0;
+    printf("What is the difficult level?\n");
+    printf("(1) Easy (2) Medium (3) Hard\n\n");
+    printf("Choose: ");
+    scanf("%d", &difficult_level);
+
+    int retry_number = 0;
+    if (difficult_level == 1) {
+        retry_number = 20;
+    } else if (difficult_level == 2) {
+        retry_number = 15;
+    } else {
+        retry_number = 6;
+    }
+
+    for (int i = 1; i <= retry_number; i++) {
 
         printf("Attempt %d\n", attempt);
         printf("What is your guess? ");
@@ -31,13 +47,10 @@ int main() {
             continue;
         }
 
-        int is_correct = guess == secret_number;
+        is_correct = guess == secret_number;
         int is_greater = guess > secret_number;
 
         if (is_correct) {
-            printf("Congratulations! You're correct!\n");
-            printf("Play again, you're a good player!\n");
-
             break;
         } else if (is_greater) {
             printf("Your guess was greater than the secret number\n");
@@ -50,7 +63,14 @@ int main() {
         double lost_points = abs(guess - secret_number) / (double) 2;
         points = points - lost_points;
     }
+
     printf("Game over!\n");
-    printf("You guessed correcty in %d attempts!\n", attempt);
-    printf("Total points: %.1f", points);
+
+    if (is_correct) {
+        printf("Congratulations! You're correct!\n");
+        printf("You guessed correcty in %d attempts!\n", attempt);
+        printf("Total points: %.1f\n", points);
+    } else {
+        printf("You have lost. Play again!\n");
+    }
 }
