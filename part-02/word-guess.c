@@ -7,7 +7,7 @@ void header() {
     printf("***********************\n\n");
 }
 
-void try_guess() {
+void try_guess(char guesses[26], int attempt) {
     char guess;
     scanf(" %c", &guess);
 
@@ -49,6 +49,6 @@ int main() {
         }
         printf("\n");
 
-        try_guess();
+        try_guess(guesses, attempt);
     } while (!is_correct && !was_hanged);
 }
