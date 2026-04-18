@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     // print the header of our game
@@ -40,10 +41,7 @@ int main() {
 
         attempt++;
 
-        double lost_points = (guess - secret_number) / (double) 2;
-        if (lost_points < 0) {
-            lost_points = lost_points * -1;
-        }
+        double lost_points = abs(guess - secret_number) / (double) 2;
         points = points - lost_points;
     }
     printf("Game over!\n");
