@@ -3,12 +3,18 @@
 #include <time.h>
 
 int main() {
-    // print the header of our game
-    printf("********************************\n");
-    printf("* Welcome to our guessing game *\n");
-    printf("********************************\n");
 
-    int seconds = time(0);
+    printf("\n\n");
+    printf("      P  /_\\  P                               \n");
+    printf("     /_\\_|_|_/_\\                             \n");
+    printf(" n_n | ||. .|| | n_n             Welcome to our\n");
+    printf(" |_|_|nnnn nnnn|_|_|             Guessing game!\n");
+    printf("|\" \"  |  |_|  |  \" \"|                      \n");
+    printf("|_____| ' _ ' |_____|                          \n");
+    printf("      \\__|_|__/                               \n");
+    printf("\n\n");
+                                             
+    int seconds = time(0);                   
     srand(seconds);
 
     int big_number = rand();
@@ -71,10 +77,35 @@ int main() {
     printf("Game over!\n");
 
     if (is_correct) {
+        printf("\n\n");
+        printf("             OOOOOOOOOOO             \n");
+        printf("         OOOOOOOOOOOOOOOOOOO         \n");
+        printf("      OOOOOO  OOOOOOOOO  OOOOOO      \n");
+        printf("    OOOOOO      OOOOO      OOOOOO    \n");
+        printf("  OOOOOOOO  #   OOOOO  #   OOOOOOOO  \n");
+        printf(" OOOOOOOOOO    OOOOOOO    OOOOOOOOOO \n");
+        printf("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+        printf("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
+        printf("OOOO  OOOOOOOOOOOOOOOOOOOOOOOOO  OOOO\n");
+        printf(" OOOO  OOOOOOOOOOOOOOOOOOOOOOO  OOOO \n");
+        printf("  OOOO   OOOOOOOOOOOOOOOOOOOO  OOOO  \n");
+        printf("    OOOOO   OOOOOOOOOOOOOOO   OOOO   \n");
+        printf("      OOOOOO   OOOOOOOOO   OOOOOO    \n");
+        printf("         OOOOOO         OOOOOO       \n");
+        printf("             OOOOOOOOOOOO            \n");
+        printf("\n\n");
+
         printf("Congratulations! You're correct!\n");
         printf("You guessed correcty in %d attempts!\n", attempt);
         printf("Total points: %.1f\n", points);
     } else {
         printf("You have lost. Play again!\n");
+
+        printf("\n\n");
+        printf("\\|/ ____ \\|/  \n");
+        printf(" @~/ ,. \\~@    \n");
+        printf("/_( \\__/ )_\\  \n");
+        printf("   \\__U_/      \n");
+        printf("\n\n");
     }
 }
