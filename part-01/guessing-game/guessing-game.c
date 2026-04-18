@@ -26,12 +26,16 @@ int main() {
     scanf("%d", &difficult_level);
 
     int retry_number = 0;
-    if (difficult_level == 1) {
-        retry_number = 20;
-    } else if (difficult_level == 2) {
-        retry_number = 15;
-    } else {
-        retry_number = 6;
+    switch (difficult_level) {
+        case 1:
+            retry_number = 20;
+            break;
+        case 2:
+            retry_number = 15;
+            break;
+        default:
+            retry_number = 6;
+            break;
     }
 
     for (int i = 1; i <= retry_number; i++) {
