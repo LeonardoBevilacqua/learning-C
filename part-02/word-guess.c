@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
+void header() {
+    printf("***********************\n");
+    printf("*   Word Guess Game   *\n");
+    printf("***********************\n\n");
+}
+
 int main() {
     char secrect_word[20];
 
@@ -11,6 +17,8 @@ int main() {
 
     char guesses[26];
     int attempt = 0;
+
+    header();
 
     do {
 
