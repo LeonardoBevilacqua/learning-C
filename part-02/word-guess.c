@@ -7,6 +7,7 @@ void header() {
     printf("***********************\n\n");
 }
 
+// Arrays are actual pointers, so there is not need to pass the reference
 void try_guess(char guesses[26], int* attempt) {
     char guess;
     scanf(" %c", &guess);
