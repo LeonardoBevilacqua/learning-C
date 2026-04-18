@@ -7,6 +7,14 @@ void header() {
     printf("***********************\n\n");
 }
 
+void try_guess() {
+    char guess;
+    scanf(" %c", &guess);
+
+    guesses[attempt] = guess;
+    attempt++;
+}
+
 int main() {
     char secrect_word[20];
 
@@ -41,11 +49,6 @@ int main() {
         }
         printf("\n");
 
-        char guess;
-        scanf(" %c", &guess);
-
-        guesses[attempt] = guess;
-        attempt++;
-
+        try_guess();
     } while (!is_correct && !was_hanged);
 }
