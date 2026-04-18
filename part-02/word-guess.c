@@ -5,5 +5,9 @@ int main() {
 
     sprintf(secrect_word, "MELANCIA");
 
-    printf("%s\n", secrect_word);
+    int is_correct = 0;
+    int was_hanged = 1;
+
+    do {
+    } while (!is_correct && !was_hanged);
 }
