@@ -40,7 +40,7 @@ int main() {
 
         attempt++;
 
-        double lost_points = (guess - secret_number) / 2.0;
+        double lost_points = (guess - secret_number) / (double) 2;
         points = points - lost_points;
     }
     printf("Game over!\n");
