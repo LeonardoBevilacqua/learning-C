@@ -4,7 +4,7 @@
 // global variables
 char secrect_word[20];
 char guesses[26];
-int attempt = 0;
+int guess_number = 0;
 
 void header() {
     printf("***********************\n");
@@ -17,14 +17,14 @@ void try_guess() {
     char guess;
     scanf(" %c", &guess);
 
-    guesses[attempt] = guess;
-    attempt++;
+    guesses[guess_number] = guess;
+    guess_number++;
 }
 
 int has_guessed(char character) {
     int found = 0;
 
-    for (int j = 0; j < attempt; j++) {
+    for (int j = 0; j < guess_number; j++) {
         if (guesses[j] == character) {
             found = 1;
             break;
@@ -56,7 +56,7 @@ void choose_word() {
 int hanged() {
     int errors = 0;
 
-    for (int i = 0; i < attempt; i++) {
+    for (int i = 0; i < guess_number; i++) {
         int exists = 0;
 
         for (int j = 0; j < strlen(secrect_word); j++) {
