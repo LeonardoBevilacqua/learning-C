@@ -25,6 +25,27 @@ void try_guess() {
 }
 
 void draw() {
+
+    int errors = wrong_guesses();
+
+    printf("  _______         \n");
+    printf(" |/      |        \n");
+    printf(" |      %c%c%c    \n",
+            (errors >= 1 ? '(' : ' '),
+            (errors >= 1 ? '_' : ' '),
+            (errors >= 1 ? ')' : ' '));
+    printf(" |      %c%c%c    \n",
+            (errors >= 3 ? '\\' : ' '),
+            (errors >= 2 ? '|' : ' '),
+            (errors >= 3 ? '/' : ' '));
+    printf(" |       %c       \n", (errors >= 2 ? '|' : ' '));
+    printf(" |      %c %c     \n",
+            (errors >= 4 ? '/' : ' '),
+            (errors >= 4 ? '\\' : ' '));
+    printf(" |                \n");
+    printf("_|___             \n");
+    printf("\n\n");
+
     for (int i = 0; i < strlen(secrect_word); i++) {
 
         int found = has_guessed(secrect_word[i]);
@@ -108,7 +129,7 @@ int won() {
     return 1;
 }
 
-int hanged() {
+int wrong_guesses() {
     int errors = 0;
 
     for (int i = 0; i < guess_number; i++) {
@@ -125,7 +146,11 @@ int hanged() {
         if (!exists) errors++;
     }
 
-    return errors >= 5;
+    return errors;
+}
+
+int hanged() {
+    return wrong_guesses() >= 5;
 }
 
 int has_guessed(char character) {

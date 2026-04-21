@@ -5,7 +5,7 @@ Repository responsible to track my learning experience with C language
 ## Courses
 
 - [x] [C: conhecendo a Linguagem das Linguagens](https://www.alura.com.br/curso-online-introducao-a-programacao-com-c-parte-1)
-- [ ] [C: avançando na linguagem](https://www.alura.com.br/curso-online-introducao-a-programacao-com-c-parte-2)
+- [x] [C: avançando na linguagem](https://www.alura.com.br/curso-online-introducao-a-programacao-com-c-parte-2)
 - [ ] [C: recursos avançados da linguagem](https://www.alura.com.br/curso-online-introducao-a-programacao-com-c-parte-3)
 
 ## Compile and run
