@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
+// global variables
+char secrect_word[20];
+char guesses[26];
+int attempt = 0;
+
 void header() {
     printf("***********************\n");
     printf("*   Word Guess Game   *\n");
@@ -8,15 +13,15 @@ void header() {
 }
 
 // Arrays are actual pointers, so there is not need to pass the reference
-void try_guess(char guesses[26], int* attempt) {
+void try_guess() {
     char guess;
     scanf(" %c", &guess);
 
-    guesses[(*attempt)] = guess;
-    (*attempt)++;
+    guesses[attempt] = guess;
+    attempt++;
 }
 
-int has_guessed(char character, char guesses[26], int attempt) {
+int has_guessed(char character) {
     int found = 0;
 
     for (int j = 0; j < attempt; j++) {
@@ -29,10 +34,10 @@ int has_guessed(char character, char guesses[26], int attempt) {
     return found;
 }
 
-void draw(char secrect_word[20], char guesses[26], int attempt) {
+void draw() {
     for (int i = 0; i < strlen(secrect_word); i++) {
 
-        int found = has_guessed(secrect_word[i], guesses, attempt);
+        int found = has_guessed(secrect_word[i]);
 
         if (found) {
             printf("%c ", secrect_word[i]);
@@ -44,24 +49,21 @@ void draw(char secrect_word[20], char guesses[26], int attempt) {
     printf("\n");
 }
 
-void choose_word(char secrect_word[20]) {
+void choose_word() {
     sprintf(secrect_word, "MELANCIA");
 }
 
 int main() {
-    char secrect_word[20];
-    char guesses[26];
     int is_correct = 0;
     int was_hanged = 0;
-    int attempt = 0;
 
-    choose_word(secrect_word);
+    choose_word();
     header();
 
     do {
 
-        draw(secrect_word, guesses, attempt);
-        try_guess(guesses, &attempt);
+        draw();
+        try_guess();
 
     } while (!is_correct && !was_hanged);
 }
