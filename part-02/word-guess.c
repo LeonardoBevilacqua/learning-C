@@ -16,6 +16,19 @@ void try_guess(char guesses[26], int* attempt) {
     (*attempt)++;
 }
 
+int has_guessed(char character, char guesses[26], int attempt) {
+    int found = 0;
+
+    for (int j = 0; j < attempt; j++) {
+        if (guesses[j] == character) {
+            found = 1;
+            break;
+        }
+    }
+
+    return found;
+}
+
 int main() {
     char secrect_word[20];
 
@@ -33,13 +46,7 @@ int main() {
 
         for (int i = 0; i < strlen(secrect_word); i++) {
 
-            int found = 0;
-            for (int j = 0; j < attempt; j++) {
-                if (guesses[j] == secrect_word[i]) {
-                    found = 1;
-                    break;
-                }
-            }
+            int found = has_guessed(secrect_word[i], guesses, attempt);
 
             if (found) {
                 printf("%c ", secrect_word[i]);
