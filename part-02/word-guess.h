@@ -1,3 +1,5 @@
+#define WORD_LENGTH 20 
+
 void header();
 void try_guess();
 void draw();

@@ -5,7 +5,7 @@
 #include "word-guess.h"
 
 // global variables
-char secrect_word[20];
+char secrect_word[WORD_LENGTH];
 char guesses[26];
 int guess_number = 0;
 
@@ -46,7 +46,7 @@ void add_word() {
     scanf(" %c", &response);
 
     if (response == 'Y') {
-        char new_word[20];
+        char new_word[WORD_LENGTH];
 
         printf("What is the new word? ");
         scanf("%s", &new_word);
@@ -152,5 +152,38 @@ int main() {
 
     } while (!won() && !hanged());
 
-    add_word();
+    if (won()) {
+        printf("\nCongratulations, you won!\n\n");
+
+        printf("       ___________      \n");
+        printf("      '._==_==_=_.'     \n");
+        printf("      .-\\:      /-.    \n");
+        printf("     | (|:.     |) |    \n");
+        printf("      '-|:.     |-'     \n");
+        printf("        \\::.    /      \n");
+        printf("         '::. .'        \n");
+        printf("           ) (          \n");
+        printf("         _.' '._        \n");
+        printf("        '-------'       \n\n");
+    } else {
+        printf("\nYou lost!\n");
+        printf("The word was **%s**\n\n", secrect_word);
+
+        printf("    _______________         \n");
+        printf("   /               \\       \n"); 
+        printf("  /                 \\      \n");
+        printf("//                   \\/\\  \n");
+        printf("\\|   XXXX     XXXX   | /   \n");
+        printf(" |   XXXX     XXXX   |/     \n");
+        printf(" |   XXX       XXX   |      \n");
+        printf(" |                   |      \n");
+        printf(" \\__      XXX      __/     \n");
+        printf("   |\\     XXX     /|       \n");
+        printf("   | |           | |        \n");
+        printf("   | I I I I I I I |        \n");
+        printf("   |  I I I I I I  |        \n");
+        printf("   \\_             _/       \n");
+        printf("     \\_         _/         \n");
+        printf("       \\_______/           \n");
+    }
 }
