@@ -29,34 +29,39 @@ int has_guessed(char character, char guesses[26], int attempt) {
     return found;
 }
 
+void draw(char secrect_word[20], char guesses[26], int attempt) {
+    for (int i = 0; i < strlen(secrect_word); i++) {
+
+        int found = has_guessed(secrect_word[i], guesses, attempt);
+
+        if (found) {
+            printf("%c ", secrect_word[i]);
+        } else {
+            printf("_ ");
+        }
+
+    }
+    printf("\n");
+}
+
+void choose_word(char secrect_word[20]) {
+    sprintf(secrect_word, "MELANCIA");
+}
+
 int main() {
     char secrect_word[20];
-
-    sprintf(secrect_word, "MELANCIA");
-
+    char guesses[26];
     int is_correct = 0;
     int was_hanged = 0;
-
-    char guesses[26];
     int attempt = 0;
 
+    choose_word(secrect_word);
     header();
 
     do {
 
-        for (int i = 0; i < strlen(secrect_word); i++) {
-
-            int found = has_guessed(secrect_word[i], guesses, attempt);
-
-            if (found) {
-                printf("%c ", secrect_word[i]);
-            } else {
-                printf("_ ");
-            }
-
-        }
-        printf("\n");
-
+        draw(secrect_word, guesses, attempt);
         try_guess(guesses, &attempt);
+
     } while (!is_correct && !was_hanged);
 }
