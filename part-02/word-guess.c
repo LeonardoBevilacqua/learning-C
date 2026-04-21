@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "word-guess.h"
 
 // global variables
@@ -38,7 +40,27 @@ void draw() {
 }
 
 void choose_word() {
-    sprintf(secrect_word, "MELANCIA");
+    FILE* file;
+    int words_size;
+
+    // Open file and read the first line, which has a number indicating the words size
+    file = fopen("words.txt", "r");
+    if (file == 0) {
+        printf("Sorry, database not available\n");
+        exit(1);
+    }
+    fscanf(file, "%d", &words_size);
+
+    // Choose a random number from zero to word size
+    srand(time(0));
+    int random = rand() % words_size;
+
+    // Find the random word
+    for (int i = 0; i <= random; i++) {
+        fscanf(file, "%s", &secrect_word);
+    }
+
+    fclose(file);
 }
 
 int won() {
