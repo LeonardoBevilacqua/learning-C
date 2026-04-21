@@ -39,6 +39,41 @@ void draw() {
     printf("\n");
 }
 
+void add_word() {
+    char response;
+
+    printf("Do you want to add a new word to the game? (Y/N) ");
+    scanf(" %c", &response);
+
+    if (response == 'Y') {
+        char new_word[20];
+
+        printf("What is the new word? ");
+        scanf("%s", &new_word);
+
+        FILE* file = fopen("words.txt", "r+");
+        if (file == 0) {
+            printf("Sorry, database not available\n");
+            exit(1);
+        }
+
+        // Get the size number from the first line and add one more
+        int size;
+        fscanf(file, "%d", &size);
+        size++;
+
+        // return to first line and update it
+        fseek(file, 0, SEEK_SET);
+        fprintf(file, "%d", size);
+
+        // Write the new word at the end
+        fseek(file, 0, SEEK_END);
+        fprintf(file, "%s", new_word);
+
+        fclose(file);
+    }
+}
+
 void choose_word() {
     FILE* file;
     int words_size;
@@ -116,4 +151,6 @@ int main() {
         try_guess();
 
     } while (!won() && !hanged());
+
+    add_word();
 }
