@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
-void header();
-void try_guess();
-void draw();
-void choose_word();
-int won();
-int hanged();
-int has_guessed(char character);
+#include "word-guess.h"
 
 // global variables
 char secrect_word[20];
