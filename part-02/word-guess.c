@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
+void header();
+void try_guess();
+void draw();
+void choose_word();
+int won();
+int hanged();
+int has_guessed(char character);
+
 // global variables
 char secrect_word[20];
 char guesses[26];
@@ -19,19 +27,6 @@ void try_guess() {
 
     guesses[guess_number] = guess;
     guess_number++;
-}
-
-int has_guessed(char character) {
-    int found = 0;
-
-    for (int j = 0; j < guess_number; j++) {
-        if (guesses[j] == character) {
-            found = 1;
-            break;
-        }
-    }
-
-    return found;
 }
 
 void draw() {
@@ -81,6 +76,19 @@ int hanged() {
     }
 
     return errors >= 5;
+}
+
+int has_guessed(char character) {
+    int found = 0;
+
+    for (int j = 0; j < guess_number; j++) {
+        if (guesses[j] == character) {
+            found = 1;
+            break;
+        }
+    }
+
+    return found;
 }
 
 int main() {
