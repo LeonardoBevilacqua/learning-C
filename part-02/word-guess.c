@@ -53,6 +53,16 @@ void choose_word() {
     sprintf(secrect_word, "MELANCIA");
 }
 
+int won() {
+    for (int i = 0; i < strlen(secrect_word); i++) {
+        if (!has_guessed(secrect_word[i])) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
 int hanged() {
     int errors = 0;
 
@@ -74,8 +84,6 @@ int hanged() {
 }
 
 int main() {
-    int is_correct = 0;
-
     choose_word();
     header();
 
@@ -84,5 +92,5 @@ int main() {
         draw();
         try_guess();
 
-    } while (!is_correct && !hanged());
+    } while (!won() && !hanged());
 }
