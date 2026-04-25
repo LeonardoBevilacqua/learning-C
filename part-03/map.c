@@ -2,6 +2,18 @@
 #include <stdlib.h>
 #include "map.h";
 
+void search_map(MAP*m, POSITION* p, char c) {
+    for (int i = 0; i < m->rows; i++) {
+        for (int j = 0; j < m->columns; j++) {
+            if (m->vector[i][j] == c) {
+                p->x = i;
+                p->y = j;
+                break;
+            }
+        }
+    }
+}
+
 void clear_map(MAP* m) {
     // (*m).rows == m->rows
     for (int i = 0; i < m->rows; i++) {

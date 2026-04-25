@@ -4,46 +4,38 @@
 #include "map.h"
 
 MAP m;
+POSITION player;
 
 int finished() {
     return 0;
 }
 
 void move(char direction) {
-    int x, y;
-
-    // search the player position (may be converted to own function)
-    for (int i = 0; i < m.rows; i++) {
-        for (int j = 0; j < m.columns; j++) {
-            if (m.vector[i][j] == '@') {
-                x = i;
-                y = j;
-                break;
-            }
-        }
-    }
+    m.vector[player.x][player.y] = '.';
 
     switch (direction) {
         case 'a':
-            m.vector[x][y-1] = '@';
+            m.vector[player.x][player.y-1] = '@';
+            player.y--;
             break;
         case 'w':
-            m.vector[x-1][y] = '@';
+            m.vector[player.x-1][player.y] = '@';
+            player.x--;
             break;
         case 's':
-            m.vector[x+1][y] = '@';
+            m.vector[player.x+1][player.y] = '@';
+            player.x++;
             break;
         case 'd':
-            m.vector[x][y+1] = '@';
+            m.vector[player.x][player.y+1] = '@';
+            player.y++;
             break;
     }
-
-    m.vector[x][y] = '.';
-
 }
 
 int main() {
     read_map(&m);
+    search_map(&m, &player, '@');
 
     do {
 
