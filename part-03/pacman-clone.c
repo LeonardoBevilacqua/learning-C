@@ -101,10 +101,14 @@ void move(char direction) {
 }
 
 void explode() {
+    if (!has_power) return;
+
     explode_by_direction(player.x, player.y, 0, 1, 3);
     explode_by_direction(player.x, player.y, 0, -1, 3);
     explode_by_direction(player.x, player.y, 1, 0, 3);
     explode_by_direction(player.x, player.y, -1, 0, 3);
+
+    has_power = 0;
 }
 
 void explode_by_direction(int x, int y, int sum_x, int sum_y, int amount) {
