@@ -1,46 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pacman-clone.h"
+#include "map.h"
 
 MAP m;
-
-void clear_map() {
-    for (int i = 0; i < m.rows; i++) {
-        free(m.vector[i]);
-    }
-    free(m.vector);
-}
-
-void alloc_map() {
-    m.vector = malloc(sizeof(char*) * m.rows);
-    for (int i = 0; i < m.rows; i++) {
-        m.vector[i] = malloc(sizeof(char) * (m.columns + 1));
-    }
-}
-
-void read_map() {
-    FILE* file = fopen("map.txt", "r");
-    if (file == 0) {
-        printf("Error while readiing the map file\n");
-        exit(1);
-    }
-
-    fscanf(file, "%d %d", &m.rows, &m.columns);
-
-    alloc_map();
-
-    for (int i = 0; i < 5; i++) {
-        fscanf(file, "%s", m.vector[i]);
-    }
-
-    fclose(file);
-}
-
-void print_map() {
-    for (int i = 0; i < 5; i++) {
-        printf("%s\n", m.vector[i]);
-    }
-}
 
 int finished() {
     return 0;
@@ -80,11 +43,11 @@ void move(char direction) {
 }
 
 int main() {
-    read_map();
+    read_map(&m);
 
     do {
 
-        print_map();
+        print_map(&m);
 
         char command;
         scanf(" %c", &command);
@@ -93,5 +56,5 @@ int main() {
     } while (!finished());
 
 
-    clear_map();
+    clear_map(&m);
 }
