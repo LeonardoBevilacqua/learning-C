@@ -11,6 +11,13 @@ int finished() {
 }
 
 void move(char direction) {
+
+    if (direction != 'a'
+            && direction != 'w'
+            && direction != 's'
+            && direction != 'd')
+        return;
+
     m.vector[player.x][player.y] = '.';
 
     switch (direction) {
