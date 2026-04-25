@@ -3,6 +3,7 @@
 #include <time.h>
 #include "pacman-clone.h"
 #include "map.h"
+#include "ui.h"
 
 MAP m;
 POSITION player;

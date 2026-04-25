@@ -1,3 +1,6 @@
+#ifndef _MAP_H_
+#define _MAP_H_
+
 #define PLAYER '@'
 #define GHOST 'F'
 #define EMPTY '.'
@@ -24,7 +27,6 @@ int search_map(MAP*m, POSITION* p, char c);
 void clear_map(MAP* m);
 void read_map(MAP* m);
 void alloc_map(MAP* m);
-void print_map(MAP* m);
 void move_in_map(MAP* m, int from_x, int from_y, int to_x,  int to_y);
 void copy_map(MAP* new, MAP* origin);
 int can_move(MAP* m, char entity, int x, int y);
@@ -32,3 +34,5 @@ int is_entity(MAP* m, char entity, int x, int y);
 int is_wall(MAP* m, int x, int y);
 int is_valid(MAP* m, int x, int y);
 int is_empty(MAP* m, int x, int y);
+
+#endif

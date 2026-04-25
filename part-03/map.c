@@ -94,8 +94,3 @@ void alloc_map(MAP* m) {
     }
 }
 
-void print_map(MAP* m) {
-    for (int i = 0; i < 5; i++) {
-        printf("%s\n", m->vector[i]);
-    }
-}

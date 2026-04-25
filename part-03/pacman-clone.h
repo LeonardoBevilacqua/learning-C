@@ -1,3 +1,6 @@
+#ifndef _PACMAN_CLONE_H_
+#define _PACMAN_CLONE_H_
+
 #define UP 'w'
 #define DOWN 's'
 #define RIGHT 'd'
@@ -12,3 +15,4 @@ int finished();
 int is_direction(char direction);
 int where_ghost_should_move(int current_x, int current_y, int* to_x, int* to_y);
 
+#endif
