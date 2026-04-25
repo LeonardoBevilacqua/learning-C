@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "pacman-clone.h"
 
-struct map m;
+MAP m;
 
 void clear_map() {
     for (int i = 0; i < m.rows; i++) {
