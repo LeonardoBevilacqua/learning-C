@@ -102,6 +102,8 @@ void move(char direction) {
 
 void explode(int x, int y, int amount) {
     if (amount == 0) return;
+    if (!is_valid(&m, x, y+1)) return;
+    if (is_wall(&m, x, y+1)) return;
 
     m.vector[x][y+1] = EMPTY;
 
