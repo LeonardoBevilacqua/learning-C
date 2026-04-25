@@ -20,7 +20,7 @@ int where_ghost_should_move(int current_x, int current_y,
     for (int i = 0; i < 10; i++) {
         int position = rand() % 4;
 
-        if (can_move(&m, options[position][0], options[position][1])) {
+        if (can_move(&m, GHOST, options[position][0], options[position][1])) {
             *to_x = options[position][0];
             *to_y = options[position][1];
 
@@ -88,7 +88,7 @@ void move(char direction) {
             break;
     }
 
-    if (!can_move(&m, next_x, next_y))
+    if (!can_move(&m, PLAYER, next_x, next_y))
         return;
 
     move_in_map(&m, player.x, player.y, next_x, next_y);

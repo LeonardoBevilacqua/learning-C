@@ -13,8 +13,19 @@ void copy_map(MAP* new, MAP* origin) {
     }
 }
 
-int can_move(MAP* m, int x, int y) {
-    return is_valid(m, x, y) && is_empty(m, x, y);
+int can_move(MAP* m, char entity, int x, int y) {
+    return is_valid(m, x, y) &&
+        !is_wall(m, x, y) &&
+        !is_entity(m, entity, x, y);
+}
+
+int is_entity(MAP* m, char entity, int x, int y) {
+    return m->vector[x][y] == entity;
+}
+
+int is_wall(MAP* m, int x, int y) {
+    return m->vector[x][y] == VERTICAL_WALL ||
+        m->vector[x][y] == HORIZONTAL_WALL;
 }
 
 int is_valid(MAP* m, int x, int y) {
