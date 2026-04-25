@@ -1,3 +1,8 @@
+#define PLAYER '@'
+#define EMPTY '.'
+#define VERTICAL_WALL '|'
+#define HORIZONTAL_WALL '-'
+
 struct map {
     char** vector;
     int rows;

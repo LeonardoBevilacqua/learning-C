@@ -11,10 +11,10 @@ int finished() {
 }
 
 int is_direction(char direction) {
-    return direction == 'a' ||
-        direction == 'w' ||
-        direction == 's' ||
-        direction == 'd';
+    return direction == LEFT ||
+        direction == UP ||
+        direction == DOWN ||
+        direction == RIGHT;
 }
 
 void move(char direction) {
@@ -25,16 +25,16 @@ void move(char direction) {
     int next_y = player.y;
 
     switch (direction) {
-        case 'a':
+        case LEFT:
             next_y--;
             break;
-        case 'w':
+        case UP:
             next_x--;
             break;
-        case 's':
+        case DOWN:
             next_x++;
             break;
-        case 'd':
+        case RIGHT:
             next_y++;
             break;
     }
@@ -51,7 +51,7 @@ void move(char direction) {
 
 int main() {
     read_map(&m);
-    search_map(&m, &player, '@');
+    search_map(&m, &player, PLAYER);
 
     do {
 

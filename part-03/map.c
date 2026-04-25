@@ -12,13 +12,13 @@ int is_valid(MAP* m, int x, int y) {
 }
 
 int is_empty(MAP* m, int x, int y) {
-    return m->vector[x][y] == '.';
+    return m->vector[x][y] == EMPTY;
 }
 
 void move_in_map(MAP* m, int from_x, int from_y, int to_x,  int to_y) {
     char entity = m->vector[from_x][from_y];
     m->vector[to_x][to_y] = entity;
-    m->vector[from_x][from_y] = '.';
+    m->vector[from_x][from_y] = EMPTY;
 }
 
 void search_map(MAP*m, POSITION* p, char c) {
