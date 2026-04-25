@@ -20,8 +20,7 @@ int where_ghost_should_move(int current_x, int current_y,
     for (int i = 0; i < 10; i++) {
         int position = rand() % 4;
 
-        if (is_valid(&m, options[position][0], options[position][1])
-                && is_empty(&m, options[position][0], options[position][1])) {
+        if (can_move(&m, options[position][0], options[position][1])) {
             *to_x = options[position][0];
             *to_y = options[position][1];
 
@@ -54,7 +53,10 @@ void ghosts() {
 }
 
 int finished() {
-    return 0;
+    POSITION pos;
+    int found_player = search_map(&m, &pos, PLAYER);
+
+    return !found_player;
 }
 
 int is_direction(char direction) {
@@ -86,9 +88,7 @@ void move(char direction) {
             break;
     }
 
-    if (!is_valid(&m, next_x, next_y))
-        return;
-    if (!is_empty(&m, next_x, next_y))
+    if (!can_move(&m, next_x, next_y))
         return;
 
     move_in_map(&m, player.x, player.y, next_x, next_y);

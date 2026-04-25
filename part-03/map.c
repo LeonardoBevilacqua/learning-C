@@ -13,6 +13,10 @@ void copy_map(MAP* new, MAP* origin) {
     }
 }
 
+int can_move(MAP* m, int x, int y) {
+    return is_valid(m, x, y) && is_empty(m, x, y);
+}
+
 int is_valid(MAP* m, int x, int y) {
     if (x >= m->rows)
         return 0;
@@ -32,16 +36,18 @@ void move_in_map(MAP* m, int from_x, int from_y, int to_x,  int to_y) {
     m->vector[from_x][from_y] = EMPTY;
 }
 
-void search_map(MAP*m, POSITION* p, char c) {
+int search_map(MAP*m, POSITION* p, char c) {
     for (int i = 0; i < m->rows; i++) {
         for (int j = 0; j < m->columns; j++) {
             if (m->vector[i][j] == c) {
                 p->x = i;
                 p->y = j;
-                break;
+                return 1;
             }
         }
     }
+
+    return 0;
 }
 
 void clear_map(MAP* m) {
