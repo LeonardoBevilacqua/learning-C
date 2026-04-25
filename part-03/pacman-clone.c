@@ -2,21 +2,19 @@
 #include <stdlib.h>
 #include "pacman-clone.h"
 
-char** map;
-int rows;
-int columns;
+struct map m;
 
 void clear_map() {
-    for (int i = 0; i < rows; i++) {
-        free(map[i]);
+    for (int i = 0; i < m.rows; i++) {
+        free(m.vector[i]);
     }
-    free(map);
+    free(m.vector);
 }
 
 void alloc_map() {
-    map = malloc(sizeof(char*) * rows);
-    for (int i = 0; i < rows; i++) {
-        map[i] = malloc(sizeof(char) * (columns + 1));
+    m.vector = malloc(sizeof(char*) * m.rows);
+    for (int i = 0; i < m.rows; i++) {
+        m.vector[i] = malloc(sizeof(char) * (m.columns + 1));
     }
 }
 
@@ -27,12 +25,12 @@ void read_map() {
         exit(1);
     }
 
-    fscanf(file, "%d %d", &rows, &columns);
+    fscanf(file, "%d %d", &m.rows, &m.columns);
 
     alloc_map();
 
     for (int i = 0; i < 5; i++) {
-        fscanf(file, "%s", map[i]);
+        fscanf(file, "%s", m.vector[i]);
     }
 
     fclose(file);
@@ -40,7 +38,7 @@ void read_map() {
 
 void print_map() {
     for (int i = 0; i < 5; i++) {
-        printf("%s\n", map[i]);
+        printf("%s\n", m.vector[i]);
     }
 }
 
@@ -52,9 +50,9 @@ void move(char direction) {
     int x, y;
 
     // search the player position (may be converted to own function)
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            if (map[i][j] == '@') {
+    for (int i = 0; i < m.rows; i++) {
+        for (int j = 0; j < m.columns; j++) {
+            if (m.vector[i][j] == '@') {
                 x = i;
                 y = j;
                 break;
@@ -64,20 +62,20 @@ void move(char direction) {
 
     switch (direction) {
         case 'a':
-            map[x][y-1] = '@';
+            m.vector[x][y-1] = '@';
             break;
         case 'w':
-            map[x-1][y] = '@';
+            m.vector[x-1][y] = '@';
             break;
         case 's':
-            map[x+1][y] = '@';
+            m.vector[x+1][y] = '@';
             break;
         case 'd':
-            map[x][y+1] = '@';
+            m.vector[x][y+1] = '@';
             break;
     }
 
-    map[x][y] = '.';
+    m.vector[x][y] = '.';
 
 }
 
