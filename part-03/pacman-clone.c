@@ -1,10 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "pacman-clone.h"
 #include "map.h"
 
 MAP m;
 POSITION player;
+
+int where_ghost_should_move(int current_x, int current_y,
+        int* to_x, int* to_y) {
+    int options[4][2] = {
+        { current_x, current_y+1 },
+        { current_x+1, current_y },
+        { current_x, current_y-1 },
+        { current_x-1, current_y }
+    };
+
+    srand(time(0));
+    for (int i = 0; i < 10; i++) {
+        int position = rand() % 4;
+
+        if (is_valid(&m, options[position][0], options[position][1])
+                && is_empty(&m, options[position][0], options[position][1])) {
+            *to_x = options[position][0];
+            *to_y = options[position][1];
+
+            return 1;
+        }
+    }
+
+    return 0;
+}
 
 void ghosts() {
     MAP copy;
@@ -14,8 +40,12 @@ void ghosts() {
     for (int i = 0; i < m.rows; i++) {
         for (int j = 0; j < m.columns; j++) {
             if (copy.vector[i][j] == GHOST) {
-                if (is_valid(&m, i, j+1) && is_empty(&m, i, j+1))
-                    move_in_map(&m, i, j, i, j+1);
+                int to_x, to_y;
+                int found = where_ghost_should_move(i, j, &to_x, &to_y);
+
+                if (found) {
+                    move_in_map(&m, i, j, to_x, to_y);
+                }
             }
         }
     }
