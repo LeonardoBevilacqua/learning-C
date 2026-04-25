@@ -18,26 +18,35 @@ void move(char direction) {
             && direction != 'd')
         return;
 
-    m.vector[player.x][player.y] = '.';
+    int next_x = player.x;
+    int next_y = player.y;
 
     switch (direction) {
         case 'a':
-            m.vector[player.x][player.y-1] = '@';
-            player.y--;
+            next_y--;
             break;
         case 'w':
-            m.vector[player.x-1][player.y] = '@';
-            player.x--;
+            next_x--;
             break;
         case 's':
-            m.vector[player.x+1][player.y] = '@';
-            player.x++;
+            next_x++;
             break;
         case 'd':
-            m.vector[player.x][player.y+1] = '@';
-            player.y++;
+            next_y++;
             break;
     }
+
+    if (next_x >= m.rows) 
+        return;
+    if (next_y >= m.columns) 
+        return;
+    if (m.vector[next_x][next_y] != '.')
+        return;
+
+    m.vector[next_x][next_y] = '@';
+    m.vector[player.x][player.y] = '.';
+    player.x = next_x;
+    player.y = next_y;
 }
 
 int main() {
