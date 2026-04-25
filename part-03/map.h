@@ -1,4 +1,5 @@
 #define PLAYER '@'
+#define GHOST 'F'
 #define EMPTY '.'
 #define VERTICAL_WALL '|'
 #define HORIZONTAL_WALL '-'
@@ -24,5 +25,6 @@ void read_map(MAP* m);
 void alloc_map(MAP* m);
 void print_map(MAP* m);
 void move_in_map(MAP* m, int from_x, int from_y, int to_x,  int to_y);
+void copy_map(MAP* new, MAP* origin);
 int is_valid(MAP* m, int x, int y);
 int is_empty(MAP* m, int x, int y);

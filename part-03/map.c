@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "map.h";
+
+void copy_map(MAP* new, MAP* origin) {
+    new->rows = origin->rows;
+    new->columns = origin->columns;
+
+    alloc_map(new);
+    for (int i = 0; i < origin->rows; i++) {
+        strcpy(new->vector[i], origin->vector[i]);
+    }
+}
 
 int is_valid(MAP* m, int x, int y) {
     if (x >= m->rows)

@@ -6,6 +6,23 @@
 MAP m;
 POSITION player;
 
+void ghosts() {
+    MAP copy;
+
+    copy_map(&copy, &m);
+
+    for (int i = 0; i < m.rows; i++) {
+        for (int j = 0; j < m.columns; j++) {
+            if (copy.vector[i][j] == GHOST) {
+                if (is_valid(&m, i, j+1) && is_empty(&m, i, j+1))
+                    move_in_map(&m, i, j, i, j+1);
+            }
+        }
+    }
+
+    clear_map(&copy);
+}
+
 int finished() {
     return 0;
 }
@@ -60,6 +77,7 @@ int main() {
         char command;
         scanf(" %c", &command);
         move(command);
+        ghosts();
 
     } while (!finished());
 
