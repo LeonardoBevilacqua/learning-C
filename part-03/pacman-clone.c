@@ -10,12 +10,15 @@ int finished() {
     return 0;
 }
 
-void move(char direction) {
+int is_direction(char direction) {
+    return direction == 'a' ||
+        direction == 'w' ||
+        direction == 's' ||
+        direction == 'd';
+}
 
-    if (direction != 'a'
-            && direction != 'w'
-            && direction != 's'
-            && direction != 'd')
+void move(char direction) {
+    if (!is_direction(direction))
         return;
 
     int next_x = player.x;
@@ -36,15 +39,12 @@ void move(char direction) {
             break;
     }
 
-    if (next_x >= m.rows) 
+    if (!is_valid(&m, next_x, next_y))
         return;
-    if (next_y >= m.columns) 
-        return;
-    if (m.vector[next_x][next_y] != '.')
+    if (!is_empty(&m, next_x, next_y))
         return;
 
-    m.vector[next_x][next_y] = '@';
-    m.vector[player.x][player.y] = '.';
+    move_in_map(&m, player.x, player.y, next_x, next_y);
     player.x = next_x;
     player.y = next_y;
 }
