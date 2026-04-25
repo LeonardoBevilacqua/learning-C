@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char map[5][10+1];
+char** map;
 int rows;
 int columns;
 
@@ -15,19 +15,10 @@ int main() {
     fscanf(file, "%d %d", &rows, &columns);
     printf("Rows %d Columns %d\n", rows, columns);
 
-    /////////////
-    int** v = malloc(sizeof(int*) * 5);
-    for (int i = 0; i < 5; i++) {
-        v[i] = malloc(sizeof(int) * 10);
+    map = malloc(sizeof(char*) * rows);
+    for (int i = 0; i < rows; i++) {
+        map[i] = malloc(sizeof(char) * (columns + 1));
     }
-    v[0][0] = 10;
-    v[1][2] = 12;
-    printf("allocated int %d %d\n", v[0][0], v[1][2]);
-    for (int i = 0; i < 5; i++) {
-        free(v[i]);
-    }
-    free(v);
-    /////////////
 
     for (int i = 0; i < 5; i++) {
         fscanf(file, "%s", map[i]);
@@ -38,4 +29,9 @@ int main() {
     }
 
     fclose(file);
+
+    for (int i = 0; i < rows; i++) {
+        free(map[i]);
+    }
+    free(map);
 }
