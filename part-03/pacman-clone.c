@@ -100,14 +100,25 @@ void move(char direction) {
     player.y = next_y;
 }
 
-void explode(int x, int y, int amount) {
+void explode() {
+    explode_by_direction(player.x, player.y, 0, 1, 3);
+    explode_by_direction(player.x, player.y, 0, -1, 3);
+    explode_by_direction(player.x, player.y, 1, 0, 3);
+    explode_by_direction(player.x, player.y, -1, 0, 3);
+}
+
+void explode_by_direction(int x, int y, int sum_x, int sum_y, int amount) {
     if (amount == 0) return;
-    if (!is_valid(&m, x, y+1)) return;
-    if (is_wall(&m, x, y+1)) return;
 
-    m.vector[x][y+1] = EMPTY;
+    int new_x = x + sum_x;
+    int new_y = y + sum_y;
 
-    explode(x, y+1, amount-1);
+    if (!is_valid(&m, new_x, new_y)) return;
+    if (is_wall(&m, new_x, new_y)) return;
+
+    m.vector[new_x][new_y] = EMPTY;
+
+    explode_by_direction(new_x, new_y, sum_x, sum_y, amount-1);
 }
 
 int main() {
@@ -122,7 +133,7 @@ int main() {
         char command;
         scanf(" %c", &command);
         move(command);
-        if (command == BOMB) explode(player.x, player.y, 3);
+        if (command == BOMB) explode();
 
         ghosts();
 
