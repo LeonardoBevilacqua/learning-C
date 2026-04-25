@@ -6,6 +6,7 @@
 
 MAP m;
 POSITION player;
+int has_power = 0;
 
 int where_ghost_should_move(int current_x, int current_y,
         int* to_x, int* to_y) {
@@ -91,9 +92,25 @@ void move(char direction) {
     if (!can_move(&m, PLAYER, next_x, next_y))
         return;
 
+    if (is_entity(&m, POWER, next_x, next_y))
+        has_power = 1;
+
     move_in_map(&m, player.x, player.y, next_x, next_y);
     player.x = next_x;
     player.y = next_y;
+}
+
+void explode() {
+    for (int i = 1; i <= 3; i++) {
+        if (is_valid(&m, player.x, player.y+i)) {
+
+            if (is_wall(&m, player.x, player.y+i)) {
+                break;
+            }
+
+            m.vector[player.x][player.y+i] = EMPTY;
+        }
+    }
 }
 
 int main() {
@@ -102,11 +119,14 @@ int main() {
 
     do {
 
+        printf("Has power: %s\n", (has_power ? "YES" : "NO"));
         print_map(&m);
 
         char command;
         scanf(" %c", &command);
         move(command);
+        if (command == BOMB) explode();
+
         ghosts();
 
     } while (!finished());

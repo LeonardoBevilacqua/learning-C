@@ -3,6 +3,7 @@
 #define EMPTY '.'
 #define VERTICAL_WALL '|'
 #define HORIZONTAL_WALL '-'
+#define POWER 'P'
 
 struct map {
     char** vector;
