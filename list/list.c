@@ -2,6 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+NODE* get(int position, NODE* list) {
+    int index = 0;
+
+    NODE* temp = list;
+    while (index != position) {
+        if (temp->next == NULL)
+            return NULL;
+
+        temp = temp->next;
+        index++;
+    }
+
+    return temp;
+}
+
 void add(int value, NODE** list) {
     NODE* new = malloc(sizeof(NODE));
 
