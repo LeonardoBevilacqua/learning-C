@@ -2,6 +2,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+NODE* find(int value, NODE* list) {
+    int index = 0;
+
+    NODE* temp = list;
+    while (temp != NULL) {
+        if (value == temp->data)
+            return temp;
+
+        temp = temp->next;
+        index++;
+    }
+
+    return NULL;
+}
 NODE* get(int position, NODE* list) {
     int index = 0;
 

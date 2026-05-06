@@ -8,6 +8,7 @@ struct Node {
 };
 typedef struct Node NODE;
 
+NODE* find(int value, NODE* list);
 NODE* get(int position, NODE* list);
 void add(int value, NODE** list);
 void free_list(NODE* list);

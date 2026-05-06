@@ -23,9 +23,11 @@ int main() {
     print_list(my_list);
 
     NODE* test = get(3, my_list);
-    if (test != NULL) {
+    if (test != NULL)
         printf("%d\n", test->data);
-    }
+    test = find(10, my_list);
+    if (test != NULL)
+        printf("%d\n", test->data);
 
     free_list(my_list);
 
