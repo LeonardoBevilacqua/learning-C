@@ -3,6 +3,7 @@
 
 struct Node {
     int data;
+    struct Node* previous;
     struct Node* next;
 };
 typedef struct Node NODE;

@@ -14,6 +14,7 @@ void add(int value, NODE** list) {
     new->next = NULL;
 
     if (!*list) {
+        new->previous = NULL;
         *list = new;
         return;
     }
@@ -23,6 +24,7 @@ void add(int value, NODE** list) {
         temp = temp->next;
     }
     temp->next = new;
+    new->previous = temp;
 }
 
 void free_list(NODE* list) {
