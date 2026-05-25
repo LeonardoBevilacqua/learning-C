@@ -18,9 +18,9 @@ void print_node(NODE* node) {
 }
 
 /*
- * A - B - C - E - G
- *       |       |
- *       - D - F -
+ * A - B - C - E - G - H
+ *       |             |
+ *       - D - F - - - -
 */
 int main() {
     // each node should be aware of previous and next
@@ -41,7 +41,10 @@ int main() {
 
     NODE nodeG = { 'G', {&nodeE, &nodeF}, 0 };
     nodeE.next[0] = &nodeG;
-    nodeF.next[0] = &nodeG;
+
+    NODE nodeH = { 'H', {&nodeG, &nodeF}, 0 };
+    nodeG.next[0] = &nodeH;
+    nodeF.next[0] = &nodeH;
 
     NODE* temp = &nodeA;
     while(temp) {
