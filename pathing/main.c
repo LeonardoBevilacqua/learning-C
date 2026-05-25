@@ -24,26 +24,35 @@ void print_node(NODE* node) {
 */
 int main() {
     // each node should be aware of previous and next
-    NODE nodeA = { 'A' };
-    NODE nodeB = { 'B', {&nodeA} };
+    NODE nodeA = { 'A', 0 };
+    NODE nodeB = { 'B', {&nodeA, 0} };
     nodeA.next[0] = &nodeB;
-    NODE nodeC = { 'C', {&nodeB} };
-    nodeB.next[0] = &nodeC;
-    NODE nodeD = { 'D', {&nodeB} };
-    nodeB.next[1] = &nodeD;
-    NODE nodeE = { 'E', {&nodeC} };
-    nodeC.next[0] = &nodeE;
-    NODE nodeF = { 'F', {&nodeD} };
-    nodeD.next[0] = &nodeF;
-    NODE nodeG = { 'G', {&nodeE, &nodeF} };
 
-    print_node(&nodeA);
-    print_node(&nodeB);
-    print_node(&nodeC);
-    print_node(&nodeD);
-    print_node(&nodeE);
-    print_node(&nodeF);
-    print_node(&nodeG);
+    NODE nodeC = { 'C', {&nodeB, 0} };
+    NODE nodeD = { 'D', {&nodeB, 0} };
+    nodeB.next[0] = &nodeC;
+    nodeB.next[1] = &nodeD;
+
+    NODE nodeE = { 'E', {&nodeC, 0} };
+    nodeC.next[0] = &nodeE;
+
+    NODE nodeF = { 'F', {&nodeD}, 0 };
+    nodeD.next[0] = &nodeF;
+
+    NODE nodeG = { 'G', {&nodeE, &nodeF}, 0 };
+    nodeE.next[0] = &nodeG;
+    nodeF.next[0] = &nodeG;
+
+    NODE* temp = &nodeA;
+    while(temp) {
+        int path = 0;
+        print_node(temp);
+        if (temp->next[1]) {
+            printf("Path 0 - %c or 1 - %c: ", temp->next[0]->value, temp->next[1]->value);
+            if (!scanf("%d", &path) || path < 0 || path > 1) path = 0;
+        }
+        temp = temp->next[path];
+    }
     // previous and next can have at most 2 possibilities
     // should navigate the list one item at the time until reach the destination
     // if previous/next has 2 possibilities, should pause to choose the next item
