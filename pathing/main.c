@@ -7,36 +7,36 @@
  *       - D - F - - - -
 */
 int main() {
-    NODE nodeA = { 'A', 0 };
-    NODE nodeB = { 'B', 0 };
-    NODE nodeC = { 'C', 0 };
-    NODE nodeD = { 'D', 0 };
-    NODE nodeE = { 'E', 0 };
-    NODE nodeF = { 'F', 0 };
-    NODE nodeG = { 'G', 0 };
-    NODE nodeH = { 'H', 0 };
+    NODE nodeA = create_node('A');
+    NODE nodeB = create_node('B');
+    NODE nodeC = create_node('C');
+    NODE nodeD = create_node('D');
+    NODE nodeE = create_node('E');
+    NODE nodeF = create_node('F');
+    NODE nodeG = create_node('G');
+    NODE nodeH = create_node('H');
 
-    set_next(&nodeA, (NODE*[]){ &nodeB, 0 });
+    connect_next_nodes(&nodeA, (NODE*[]){ &nodeB, NULL });
 
-    set_previous(&nodeB, (NODE*[]){ &nodeA, 0 });
-    set_next(&nodeB, (NODE*[]){ &nodeC, &nodeD });
+    connect_previous_nodes(&nodeB, (NODE*[]){ &nodeA, NULL });
+    connect_next_nodes(&nodeB, (NODE*[]){ &nodeC, &nodeD });
 
-    set_previous(&nodeC, (NODE*[]){ &nodeB, 0 });
-    set_next(&nodeC, (NODE*[]){ &nodeE, 0 });
+    connect_previous_nodes(&nodeC, (NODE*[]){ &nodeB, NULL });
+    connect_next_nodes(&nodeC, (NODE*[]){ &nodeE, NULL });
 
-    set_previous(&nodeD, (NODE*[]){ &nodeB, 0 });
-    set_next(&nodeD, (NODE*[]){ &nodeF, 0 });
+    connect_previous_nodes(&nodeD, (NODE*[]){ &nodeB, NULL });
+    connect_next_nodes(&nodeD, (NODE*[]){ &nodeF, NULL });
 
-    set_previous(&nodeE, (NODE*[]){ &nodeC, 0 });
-    set_next(&nodeE, (NODE*[]){ &nodeG, 0 });
+    connect_previous_nodes(&nodeE, (NODE*[]){ &nodeC, NULL });
+    connect_next_nodes(&nodeE, (NODE*[]){ &nodeG, NULL });
 
-    set_previous(&nodeF, (NODE*[]){ &nodeD, 0 });
-    set_next(&nodeF, (NODE*[]){ &nodeH, 0 });
+    connect_previous_nodes(&nodeF, (NODE*[]){ &nodeD, NULL });
+    connect_next_nodes(&nodeF, (NODE*[]){ &nodeH, NULL });
 
-    set_previous(&nodeG, (NODE*[]){ &nodeE, 0 });
-    set_next(&nodeG, (NODE*[]){ &nodeH, 0 });
+    connect_previous_nodes(&nodeG, (NODE*[]){ &nodeE, NULL });
+    connect_next_nodes(&nodeG, (NODE*[]){ &nodeH, NULL });
 
-    set_previous(&nodeH, (NODE*[]){ &nodeG, &nodeF });
+    connect_previous_nodes(&nodeH, (NODE*[]){ &nodeG, &nodeF });
 
     navigate_nodes(&nodeA);
 

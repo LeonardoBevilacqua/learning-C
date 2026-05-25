@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 // private
-int is_valid_position(int position) {
+static int is_valid_position(const int position) {
     return position >= 0 && position <= 1;
 }
 
-int handle_path(NODE* node) {
+static int handle_path(const NODE* node) {
     if (!node->next[1]) return 0; 
 
     printf("Path 0 - %c or 1 - %c: ", node->next[0]->value, node->next[1]->value);
@@ -17,6 +17,16 @@ int handle_path(NODE* node) {
 }
 
 // public
+NODE create_node(const char value) {
+    NODE node = {
+        .value = value,
+        .next = { NULL, NULL },
+        .previous = { NULL, NULL }
+    };
+
+    return node;
+}
+
 void navigate_nodes(NODE* starting_node) {
     NODE* temp = starting_node;
     while(temp) {
@@ -25,8 +35,8 @@ void navigate_nodes(NODE* starting_node) {
     }
 }
 
-void print_node(NODE* node) {
-    printf("Mem: %d - value: %c, previous: [%d, %d], next: [%d, %d]\n",
+void print_node(const NODE* node) {
+    printf("Mem: %p - value: %c, previous: [%p, %p], next: [%p, %p]\n",
            node,
            node->value,
            node->previous[0], node->previous[1],
@@ -34,12 +44,12 @@ void print_node(NODE* node) {
     );
 }
 
-void set_next(NODE* node, NODE* next[2]) {
+void connect_next_nodes(NODE* node, NODE* next[MAX_PATHS]) {
     node->next[0] = next[0];
     node->next[1] = next[1];
 }
 
-void set_previous(NODE* node, NODE* previous[2]) {
+void connect_previous_nodes(NODE* node, NODE* previous[MAX_PATHS]) {
     node->previous[0] = previous[0];
     node->previous[1] = previous[1];
 }
